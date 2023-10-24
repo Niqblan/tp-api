@@ -13,7 +13,12 @@ export const AuthProvider = ({ children }) => {
     if (user) {
       setUser(user);
       setLoggedIn(true);
-      return user.isAdmin; // Devuelve si el usuario es administrador
+      if(user.isAdmin){
+        return 'admin'; // usuario es administrador
+      }else{
+        return 'noAdmin';
+      }
+      
     } else {
       setUser(null);
       setLoggedIn(false);
