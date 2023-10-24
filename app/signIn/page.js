@@ -14,13 +14,14 @@ export default function Login() {
   const router = useRouter();
 
   const handleLogin = async () => {
-    const success = await login({ email, password });
-    if (success) {
-      router.push('../'); // Redirige a la página principal si el inicio de sesión es exitoso
-      console.log('Inicio de sesión exitoso');
+    const isAdmin = await login({ email, password });
+    if (isAdmin) {
+      router.push('../admin'); // Redirige a la página de administrador si el inicio de sesión es exitoso y el usuario es administrador
+      console.log('Inicio de sesión exitoso para administrador');
     } else {
-      swal('El email o la contraseña son incorrectos', '', 'error');
-      console.log('Inicio de sesión fallido');
+      // Redirige a la página principal para usuarios no administradores
+      router.push('../');
+      console.log('Inicio de sesión exitoso para usuario no administrador');
     }
   };
 
