@@ -5,6 +5,7 @@ import {useState, useContext} from 'react'
 import { AuthContext } from '../context/Context';
 import { useRouter } from 'next/navigation';
 import swal from 'sweetalert';
+import { users } from '../Mock/mockdate';
 
 export default function Login() {
 
@@ -14,16 +15,25 @@ export default function Login() {
   const router = useRouter();
 
   const handleLogin = async () => {
-    const isAdmin = await login({ email, password });
-    if (isAdmin) {
-      router.push('../admin'); // Redirige a la página de administrador si el inicio de sesión es exitoso y el usuario es administrador
+  const isAdmin = await login({ email, password });
+
+  if (isAdmin !== false) {
+    // Si el email y usuario son correctos
+    if (isAdmin=='admin') {
+      // Si el usuario es administrador, redirige a la página de administrador
+      router.push('../admin');
       console.log('Inicio de sesión exitoso para administrador');
     } else {
-      // Redirige a la página principal para usuarios no administradores
+      // Si el usuario no es administrador, redirige a la página principal
       router.push('../');
       console.log('Inicio de sesión exitoso para usuario no administrador');
     }
-  };
+  } else {
+    // Muestra una alerta cuando el email o la contraseña son incorrectos
+    swal('El email o la contraseña son incorrectos', '', 'error');
+    console.log('Inicio de sesión fallido');
+  }
+};
 
   return (
     <div className="flex flex-col justify-center gap-10 items-center bg-[#8ec7ec] h-[100vh] w-[100vw] font-sans pb-10">
