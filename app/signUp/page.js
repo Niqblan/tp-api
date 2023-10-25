@@ -16,7 +16,10 @@ export default function signIn () {
             <input type="User" className="input" placeholder="UserName" name="Usuario" />
             <input type="password" className="input" placeholder="Password" name="password" />
           </div>
-          <button type="submit">Sign up</button>
+          <Link href={"/"}>
+            <button type="submit">Sign up</button>
+          </Link>
+          
         </form>   
         <div className="form-section">
           <p>Have an account? <Link href={"/signIn"}>Log in</Link> </p>

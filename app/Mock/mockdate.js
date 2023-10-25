@@ -25,7 +25,7 @@ export const users = [
     name: 'Juan',
     lastName: 'Pérez',
     email: 'juan@example.com',
-    password: 'contraseña123',
+    password: '789',
     optCode: 9128,
     optExpiration: '2023-06-30',
     isAdmin: false,
