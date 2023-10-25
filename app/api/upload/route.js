@@ -4,7 +4,6 @@ import path from "path";
 
 // importamos cloudinary
 import {v2 as cloudinary} from 'cloudinary';
-import { rejects } from "assert";
           
 cloudinary.config({ 
   cloud_name: 'dxvmowx1w', 
@@ -14,32 +13,36 @@ cloudinary.config({
 
 export async function POST(request){
     const data = await request.formData()
-    const image = data.get("image");
+    const images = Array.from(data.entries()).filter(([name]) => name.startsWith('image'));
 
-    if (!image){
+
+    if (!images || images.length === 0){
         return NextResponse.json("No se ha subido ninguna imagen!", { status: 400 });
     }
 
-    const bytes = await image.arrayBuffer()
-    const buffer = Buffer.from(bytes)
-
+    const responses = await Promise.all(images.map(async ([name, file]) => {
+        const buffer = await file.arrayBuffer();
     //guardar en un archivo
     //const filePath = path.join(process.cwd(), "public", image.name)
     //await writeFile(filePath, buffer)
 
-    const response
-     = await new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         cloudinary.uploader.upload_stream({}, (err, result) => {
-            if (err) {
-                reject(err)
-            }
-            
-            resolve(result)
-        }).end(buffer)
-    })
+          if (err) {
+            reject(err);
+          }
+  
+          resolve(result);
+        }).end(Buffer.from(buffer));
+      });
+    }));
+  
+    const urls = responses.map(response => response.secure_url);
+  
+    console.log("URLs:", urls);
     
     return NextResponse.json({
-        message: "Imagen subida!",
-        url: response.secure_url
+      message: "Imágenes subidas",
+      urls,
     });
 }
