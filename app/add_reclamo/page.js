@@ -45,17 +45,17 @@ export default function page() {
           </select>
         </div>
         <div>
-          <h1 className='text-white'>Subir imagenes</h1>
+          <h1 className='text-white '>Subir</h1>
           <input className='text-white' type="file" multiple onChange={(e) => {
             setFile(e.target.files[0]);
           }}/>
-          <button> Subir imagenes </button>
+          <button className='bg-[#126bf1] text-[#fff] w-[70px] rounded-2xl'> Subir</button>
         </div>
 
          <div className='flex gap-2'>
           <button className='bg-[#126bf1] text-[#fff] rounded-2xl w-[200px] p-4'>Confirmar reclamo</button>
           <Link href={"/"} >
-            <button className='bg-[#eb4343] text-[#ffffff] rounded-2xl w-[200px] p-4'>Cancelar</button>
+            <button className='bg-[#eb4343] text-[#ffffff] rounded-2xl w-[200px] p-4 top-2'>Cancelar</button>
           </Link>
          
          </div>
