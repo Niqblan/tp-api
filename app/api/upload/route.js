@@ -27,7 +27,8 @@ export async function POST(request){
     //const filePath = path.join(process.cwd(), "public", image.name)
     //await writeFile(filePath, buffer)
 
-    const response = await new Promise((resolve, reject) => {
+    const response
+     = await new Promise((resolve, reject) => {
         cloudinary.uploader.upload_stream({}, (err, result) => {
             if (err) {
                 reject(err)
