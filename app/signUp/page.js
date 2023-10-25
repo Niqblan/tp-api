@@ -9,20 +9,21 @@ export default function signIn () {
       <h1 className='titulo'>Sistema de Reclamos</h1>
       <div className="form-box">
         <form className="form">
-          <span className="title">Sign up</span>
-          <span className="subtitle">Create a account </span>
+          <span className="title">Registrarse</span>
+          <span className="subtitle">Crear una cuenta </span>
           <div className="form-container">
-            <input type="text" className="input" placeholder="Full Name" name="fullName" />
-            <input type="User" className="input" placeholder="UserName" name="Usuario" />
-            <input type="password" className="input" placeholder="Password" name="password" />
+            <input type="text" className="input" placeholder="Nombre completo" name="fullName" />
+            <input type="User" className="input" placeholder="Email" name="Usuario" />
+            <input type="password" className="input" placeholder="Contraseña" name="password" />
+            
           </div>
           <Link href={"/"}>
-            <button type="submit">Sign up</button>
+            <button type="submit">Registrarse</button>
           </Link>
           
         </form>   
         <div className="form-section">
-          <p>Have an account? <Link href={"/signIn"}>Log in</Link> </p>
+          <p>Tienes una cuenta? <Link href={"/signIn"}>Inicia sesión</Link> </p>
         </div>
       </div>
     </div>

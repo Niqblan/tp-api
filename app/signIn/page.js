@@ -40,17 +40,17 @@ export default function Login() {
       <h1 className='titulo'>Sistema de Reclamos</h1>
       <div className="form-box">
         <form className="form">
-          <span className="title">Log In</span>
+          <span className="title">Inicia sesión</span>
           <div className="form-container">
             <input type="email" className="input" placeholder="Email" name="email" onChange={(e) => setEmail(e.target.value)} />
-            <input type="password" className="input" placeholder="Password" name="password" onChange={(e) => setPassword(e.target.value)}  />
+            <input type="password" className="input" placeholder="Contraseña" name="password" onChange={(e) => setPassword(e.target.value)}  />
           </div>
           
-          <button type="button" onClick={handleLogin}>Log in</button>
+          <button type="button" onClick={handleLogin}>Iniciar sesión</button>
       
         </form>
         <div className="form-section">
-          <p>Don t have an account? <Link href="/signUp">Sign up</Link></p>
+          <p>No tienes cuenta? <Link href="/signUp">Registrate!</Link></p>
         </div>
       </div>
     </div>
