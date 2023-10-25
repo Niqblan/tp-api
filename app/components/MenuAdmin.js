@@ -25,7 +25,7 @@ export default function Menu() {
         </Link>
         <Link href={"/add_reclamo_admin"}><button className='font-bold  px-[100px] py-5 bg-[#126bf1] text-[#ffff] rounded-2xl top-7'>Hacer Reclamo</button> 
         </Link>
-        <Link href={"/ver_reclamo"}><button className='font-bold px-[105px] py-5  bg-[#126bf1] text-[#ffff] rounded-2xl '>Ver Reclamos</button>
+        <Link href={"/ver_reclamo_admin"}><button className='font-bold px-[105px] py-5  bg-[#126bf1] text-[#ffff] rounded-2xl '>Ver Reclamos</button>
         </Link>
         <button className='font-bold px-[106px] py-5 bg-[#126bf1] text-[#ffff] rounded-2xl ' onClick={handleLogout} >Cerrar Sesión</button>   
     </div>
