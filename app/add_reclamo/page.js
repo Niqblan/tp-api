@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client"
 import Link from 'next/link'
 import React from 'react'
@@ -6,6 +7,17 @@ import { useState } from 'react'
 
 export default function page() {
   const [file, setFile] = useState(null);
+
+  const [description, setDescription] = useState('');
+  const maxLength = 1000; 
+
+  const handleDescriptionChange = (e) => {
+    const text = e.target.value;
+    
+    if (text.length <= maxLength) {
+      setDescription(text);
+    }
+  };
 
   return (
     <div className='flex flex-col gap-3 items-center bg-[#8ec7ec] h-[100vh] w-[100%] py-12'>
@@ -29,13 +41,20 @@ export default function page() {
         </div>
         <div>
           <h1 className='text-white'>Descripción del reclamo</h1>
-          <textarea className="bg-[#fff] px-2 w-[500px] h-[200px] py-1 rounded-md" type="text" />
+          <textarea className="bg-[#fff] px-2 w-[500px] h-[200px] py-1 rounded-md" value={description} onChange={handleDescriptionChange}/>
+          <p className='text-white absolute left-[1120px]'>{description.length} / {maxLength} </p>
         </div>
-        <div>
-          <h1 className='text-white'>Ubicación</h1>
-          <input className='bg-[#fff] px-2 py-1 w-[500px] rounded-md' type="text" />
+        <div className="flex space-x-4 ">
+        <div className="w-1/2 ">
+          <label className="block text-white">Edificio:</label>
+          <input className="bg-[#fff] px-2 py-1 w-full rounded-md" type="text" />
         </div>
-        <div>
+        <div className="w-1/2">
+          <label className="block text-white">Piso:</label>
+          <input className="bg-[#fff] px-2 py-1 w-full rounded-md" type="text" />
+        </div>
+      </div>
+      <div>
           <h1 className='text-white'>Seleccionar unidad</h1>
           <select className='bg-[#fff]'>
             <option>Unidad 1</option>
