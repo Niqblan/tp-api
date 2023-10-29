@@ -2,9 +2,21 @@
 import Link from 'next/link'
 import React from 'react'
 import '../globals.css'
-import { useState } from 'react'
+import { useState, useContext, useEffect } from 'react'
+import { AuthContext } from '../context/Context';
+import { useRouter } from 'next/navigation';
 
 export default function page() {
+
+  const { loggedIn } = useContext(AuthContext);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!loggedIn) {
+      router.push('../signIn'); 
+    }
+  }, [loggedIn, router]);
+
   const [files, setFiles] = useState([]);
 
   const handleFileChange = (e) => {
