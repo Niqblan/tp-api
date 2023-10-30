@@ -38,24 +38,28 @@ export const users = [
       piso: 3,
       habilitado: true,
       codigoEdificio: 145,
+      numero: 5,
     },
     {
       id: 2,
       piso: 5,
       habilitado: false,
       codigoEdificio: 754,
+      numero: 5,
     },
     {
       id: 3,
       piso: 2,
       habilitado: true,
       codigoEdificio: 107,
+      numero: 5,
     },
     {
       id: 4,
-      piso: 7,
+      piso: 4,
       habilitado: false,
       codigoEdificio: 303,
+      numero: 5,
     }
   ]
   
