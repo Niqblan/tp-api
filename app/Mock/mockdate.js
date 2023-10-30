@@ -98,3 +98,51 @@ export const duenio = [
     DNI: 29485599,
   }
 ]
+
+export const edificio = [
+  {
+    id:1,
+    nombre:'SLS Puerto Madero',
+    direccion:'Mogliani 425',
+  },
+  {
+    id:2,
+    nombre:'The Link Towers',
+    direccion:'Arrayanes 1230'
+  },
+  {
+    id:3,
+    nombre:'The Fire Place',
+    direccion:'Bombares 50'
+  },
+  {
+    id:4,
+    nombre:'Alvear Tower',
+    direccion:'Alvear 100'
+  },
+  {
+    id:5,
+    nombre:'Dique Dos',
+    direccion:'Maquinista Savio 990'
+  },
+  {
+    id:6,
+    nombre:'Libertador Plaza',
+    direccion:'Libertador 5600'
+  },
+  {
+    id:7,
+    nombre:'Chateau Libertador',
+    direccion:'Libertador 5400'
+  },
+  {
+    id:8,
+    nombre:'The Tower',
+    direccion:'Parana 300'
+  },
+  {
+    id:9,
+    nombre:'Lizard Plaza',
+    direccion:'Lizard 1000'
+  },
+]
