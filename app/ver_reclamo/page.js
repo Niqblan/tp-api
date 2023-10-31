@@ -27,15 +27,46 @@ export default function page() {
       </Link>
 
       {/* Mostrar los reclamos */}
-      <div>
-        {reclamos.map((reclamo, index) => (
-          <div key={index}>
-            <h2>{reclamo.titulo}</h2>
-            <p>{reclamo.descripcion}</p>
-            {/* Otros detalles del reclamo... */}
-          </div>
-        ))}
+      <div className="h-[10vh] w-[100vw] flex flex-col gap-[1px] justify-center items-center px-[10%] ">
+      <div className="flex w-full bg-[#126bf1] text-white font-bold p-3">
+        <div className="w-[40%] pl-10 ">
+          <h1>Titulo</h1>
+        </div>
+        <div className="w-[15%] pl-10 text-center">
+          <h1>Unidad</h1>
+        </div>
+        <div className="w-[15%] pl-10 text-center">
+          <h1>Edificio</h1>
+        </div>
+        <div className="w-[15%] pl-10 text-center">
+          <h1>Piso</h1>
+        </div>
+        <div className="w-[30%] pl-10 text-center">
+          <h1>Estado</h1>
+        </div>
       </div>
+      {reclamos.map((reclamo, index) => {
+        return (
+          <div className="flex w-full bg-[#d9e6fa] p-2"key={index}>
+            <div className="w-[40%] pl-10 ">
+              <h1>{reclamo.titulo}</h1>
+            </div>
+            <div className="w-[15%] pl-10 text-center">
+              <h1>{reclamo.unidad}</h1>
+            </div>
+            <div className="w-[15%] pl-10 text-center">
+              <h1>{reclamo.edificio}</h1>
+            </div>
+            <div className="w-[15%] pl-10 text-center">
+              <h1>{reclamo.piso}</h1>
+            </div>
+            <div className="w-[30%] pl-10 text-center">
+              <h1>{reclamo.estado}</h1>
+            </div>
+          </div>
+        );
+      })}
     </div>
-  );
-}
+    </div>
+    )
+ }

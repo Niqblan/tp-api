@@ -13,12 +13,14 @@ export default function page() {
   const router = useRouter();
 
   useEffect(() => {
-    if (!loggedIn) {
-      router.push('../signIn'); 
-    }
+    //if (!loggedIn) {
+      //router.push('../signIn'); 
+    //}
   }, [loggedIn, router]);
 
   const [files, setFiles] = useState([]);
+  const [imageURLs, setImageURLs] = useState([]);
+
 
   const handleFileChange = (e) => {
     setFiles(Array.from(e.target.files));
@@ -35,14 +37,19 @@ export default function page() {
       const response = await fetch("/api/upload", { method: "POST", body: formData });
       const data = await response.json();
 
+      setImageURLs(data.urls);
       console.log("URLs:", data.urls);
+
       // Agregar el reclamo al contexto
       const reclamo = {
         titulo: /* Obtén el título del reclamo */ document.querySelector('input[type="text"]').value,
         descripcion: /* Obtén la descripción del reclamo */ description,
         edificio: edificio,
         piso: piso,
-        imagenes: files,
+        imagenes: imageURLs,
+        unidad : unidad,
+        estado: "Pendiente"
+
 
       }
       agregarReclamo(reclamo);
@@ -76,6 +83,11 @@ export default function page() {
     setPiso(e.target.value)
   }
 
+  const [unidad, setUnidad] = useState('');
+  const handleUnidad = (e) => {
+    setUnidad(e.target.value)
+  }
+
 
 
   return (
@@ -95,22 +107,24 @@ export default function page() {
           <p className='text-white ml-[410px]'>{description.length} / {maxLength} </p>
         </div>
         <div className="flex space-x-4 mt-4">
-        <div className="w-1/2 ">
           <label className="block text-white">Edificio:</label>
           <input className="bg-[#fff] px-2 py-1 w-full rounded-md" type="texto" onChange={(e) => handleEdificio(e)} />
-        </div>
-        <div className="w-1/2">
-          <label className="block text-white">Piso:</label>
-          <input className="bg-[#fff] px-2 py-1 w-full rounded-md" type="number" onChange={(e) => handlePiso(e)}/>
-        </div>
-      </div>
+        
+        <h1 className='text-white'>Piso:</h1>
+          <select className='bg-[#fff] w-[50px] h-7' onChange={(e) => handlePiso(e)}>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+          </select>
+          </div>
         <div>
           <h1 className='text-white'>Seleccionar unidad</h1>
-          <select className='bg-[#fff]'>
-            <option>Unidad 1</option>
-            <option>Unidad 2</option>
-            <option>Unidad 3</option>
-            <option>Unidad 4</option>
+          <select className='bg-[#fff]' onChange={(e) => handleUnidad(e)}>
+            <option> 1</option>
+            <option> 2</option>
+            <option> 3</option>
+            <option> 4</option>
           </select>
         </div>
         <div>

@@ -1,13 +1,16 @@
 'use client'
 import Link from 'next/link'
-import React from 'react'
+import React, { useContext } from 'react'
 import '../globals.css'
 import { useRouter } from 'next/navigation';
+import { AuthContext } from '../context/Context';
+
 
 
 export default function Menu() {
 
   const router = useRouter();
+  const {logout} = useContext(AuthContext);
 
   const handleLogout = () => {
     logout();
