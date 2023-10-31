@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation';
 
 export default function page() {
 
-  const { loggedIn } = useContext(AuthContext);
+  const { loggedIn, reclamos } = useContext(AuthContext);
   const router = useRouter();
 
   useEffect(() => {
@@ -21,11 +21,21 @@ export default function page() {
 
   return (
     <div className='flex flex-col items-center bg-[#8ec7ec] h-[100vh] w-[100%] '>
-        <h1 className='titulo py-11'>Mis reclamos</h1>
-        <Link href={"/"} > 
-        {/* ya con que tenga solo la barra te manda directo a app */}
-            <button className='bg-[#126bf1] text-[#fff] rounded-2xl w-[200px] p-4 absolute top-5 left-5'>Volver</button>
-        </Link>
-    </div>
+      <h1 className='titulo py-11'>Mis reclamos</h1>
+      <Link href={"/"}>
+        <button className='bg-[#126bf1] text-[#fff] rounded-2xl w-[200px] p-4 absolute top-5 left-5'>Volver</button>
+      </Link>
 
-  )}
+      {/* Mostrar los reclamos */}
+      <div>
+        {reclamos.map((reclamo, index) => (
+          <div key={index}>
+            <h2>{reclamo.titulo}</h2>
+            <p>{reclamo.descripcion}</p>
+            {/* Otros detalles del reclamo... */}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}

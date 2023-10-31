@@ -5,10 +5,11 @@ import '../globals.css'
 import { useState, useContext, useEffect } from 'react'
 import { AuthContext } from '../context/Context';
 import { useRouter } from 'next/navigation';
+import { edificio } from '../Mock/mockdate'
 
 export default function page() {
 
-  const { loggedIn } = useContext(AuthContext);
+  const { loggedIn, agregarReclamo } = useContext(AuthContext);
   const router = useRouter();
 
   useEffect(() => {
@@ -35,7 +36,19 @@ export default function page() {
       const data = await response.json();
 
       console.log("URLs:", data.urls);
-      router.push('/')
+      // Agregar el reclamo al contexto
+      const reclamo = {
+        titulo: /* Obtén el título del reclamo */ document.querySelector('input[type="text"]').value,
+        descripcion: /* Obtén la descripción del reclamo */ description,
+        edificio: edificio,
+        piso: piso,
+        imagenes: files,
+
+      }
+      agregarReclamo(reclamo);
+      console.log(reclamo)
+
+      router.push('/');
     } catch (error) {
       console.error("Error:", error);
     }
@@ -53,6 +66,18 @@ export default function page() {
     }
   };
 
+  const [edificio, setEdificio] = useState('');
+  const handleEdificio = (e) => {
+    setEdificio(e.target.value)
+  }
+  
+  const [piso, setPiso] = useState('');
+  const handlePiso = (e) => {
+    setPiso(e.target.value)
+  }
+
+
+
   return (
     <div className='flex flex-col gap-3 items-center bg-[#8ec7ec] h-[100vh] w-[100%] py-12'>
       <h1 className='titulo'>Hacer un reclamo</h1>
@@ -66,17 +91,17 @@ export default function page() {
         </div>
         <div>
           <h1 className='text-white'>Descripción del reclamo</h1>
-          <textarea className="bg-[#fff] px-2 w-[500px] h-[200px] py-1 rounded-md" value={description} onChange={handleDescriptionChange}/>
+          <textarea className="bg-[#fff] px-2 w-[500px] h-[200px] py-1 rounded-md" value={description} onChange={(e) => handleDescriptionChange(e)}/>
           <p className='text-white ml-[410px]'>{description.length} / {maxLength} </p>
         </div>
         <div className="flex space-x-4 mt-4">
         <div className="w-1/2 ">
           <label className="block text-white">Edificio:</label>
-          <input className="bg-[#fff] px-2 py-1 w-full rounded-md" type="text" />
+          <input className="bg-[#fff] px-2 py-1 w-full rounded-md" type="texto" onChange={(e) => handleEdificio(e)} />
         </div>
         <div className="w-1/2">
           <label className="block text-white">Piso:</label>
-          <input className="bg-[#fff] px-2 py-1 w-full rounded-md" type="text" />
+          <input className="bg-[#fff] px-2 py-1 w-full rounded-md" type="number" onChange={(e) => handlePiso(e)}/>
         </div>
       </div>
         <div>
