@@ -21,6 +21,9 @@ export default function page() {
   return (
     <div className='flex flex-col gap-3 items-center bg-[#8ec7ec] h-[100vh] w-[100%] py-12'>
       <h1 className='titulo'>Hacer un reclamo</h1>
+      <Link href={"/admin"} >
+            <button className='bg-[#126bf1] text-[#fff] rounded-2xl w-[150px] p-4 absolute top-5 left-5'>Volver</button>
+      </Link>
       <form onSubmit={async(e) => {
         e.preventDefault()  
 

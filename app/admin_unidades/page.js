@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/Context';
 import { useRouter } from 'next/navigation';
 import { unidades as unidadesData } from '../Mock/mockdate';
+import Link from 'next/link';
 
 export default function AdminUnidades() {
   const { loggedIn } = useContext(AuthContext);
@@ -27,11 +28,13 @@ export default function AdminUnidades() {
         : !unidad.habilitado
     );
 
-    
-
   return (
     <div className="flex flex-col items-center bg-[#8ec7ec] h-[100vh] w-[100%]">
+      
       <h1 className="titulo mt-[80px]">Administrar Unidades</h1>
+      <Link href={"/admin"} >
+            <button className='bg-[#126bf1] text-[#fff] rounded-2xl w-[150px] p-4 absolute top-5 left-5'>Volver</button>
+        </Link>
       <div className="container mt-4">
         <form className="flex mb-4 gap-2 mt-20">
             <input

@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/Context';
 import { useRouter } from 'next/navigation';
 import { edificio } from '../Mock/mockdate'; // Asegúrate de importar tus datos de edificios aquí.
+import Link from 'next/link';
 
 export default function AdminEdificios() {
   const { loggedIn } = useContext(AuthContext);
@@ -28,6 +29,9 @@ export default function AdminEdificios() {
   return (
     <div className="flex flex-col items-center bg-[#8ec7ec] h-[100vh] w-[100%]">
       <h1 className="titulo mt-[50px]">Administrar Edificios</h1>
+      <Link href={"/admin"} >
+            <button className='bg-[#126bf1] text-[#fff] rounded-2xl w-[150px] p-4 absolute top-5 left-5'>Volver</button>
+      </Link>
       <div className="container mt-4">
         <form className="flex mb-4 gap-5 mt-10">
           <input
