@@ -35,7 +35,7 @@ export default function page() {
       const data = await response.json();
 
       console.log("URLs:", data.urls);
-
+      router.push('/')
     } catch (error) {
       console.error("Error:", error);
     }
@@ -56,7 +56,10 @@ export default function page() {
   return (
     <div className='flex flex-col gap-3 items-center bg-[#8ec7ec] h-[100vh] w-[100%] py-12'>
       <h1 className='titulo'>Hacer un reclamo</h1>
-      <form className= "flex flex-col gap-6 font-semibold pb-10 py-5" >
+      <Link href={"/"} >
+            <button className='bg-[#126bf1] text-[#fff] rounded-2xl w-[150px] p-4 absolute top-5 left-5'>Volver</button>
+      </Link>
+      <form className= "flex flex-col gap-6 font-semibold pb-10 py-5" onSubmit={(e) => {e.preventDefault(); }}>
         <div>
           <h1 className='text-white'>Título del reclamo</h1>
           <input className="bg-[#fff] px-2 py-1 w-[500px] rounded-md" type="text" />
