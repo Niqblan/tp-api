@@ -89,6 +89,7 @@ export default function AdminUnidades() {
           </tbody>
         </table>
       </div>
+      <div className="mb-20 mt-20"></div>
     </div>
   );
 }

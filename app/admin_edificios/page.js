@@ -78,7 +78,7 @@ export default function AdminEdificios() {
           </tbody>
         </table>
       </div>
-      
+      <div className="mb-20 mt-20"></div>
     </div>
   );
 }
