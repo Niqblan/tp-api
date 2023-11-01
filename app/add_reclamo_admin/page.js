@@ -123,6 +123,7 @@ export default function page() {
             <option> 4</option>
           </select>
         </div>
+      
         <div>
           <h1 className='text-white '>Subir</h1>
           <input className='text-white' type="file" multiple onChange={handleFileChange}/>
