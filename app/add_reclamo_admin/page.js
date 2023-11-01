@@ -151,5 +151,4 @@ export default function page() {
       </form>
     </div>
   )
-  
 }

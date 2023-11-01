@@ -32,7 +32,6 @@ export const users = [
   },
   ];
 
-  
   export const reclamo = [
     {
     titulo: 'Falla en sisterna',
