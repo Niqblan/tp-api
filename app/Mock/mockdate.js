@@ -41,7 +41,6 @@ export const users = [
     unidad : 1,
     persona: 'inquilino',
     estado: "Pendiente"
-    
     },
     {
       titulo: 'Falla en sistema eléctrico',

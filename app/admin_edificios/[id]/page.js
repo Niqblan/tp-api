@@ -12,4 +12,5 @@ export default function edificio(){
           </div>
         </div>
       );
+      
 }

@@ -78,7 +78,6 @@ export default function AdminEdificios() {
           </tbody>
         </table>
       </div>
-      
     </div>
   );
 }

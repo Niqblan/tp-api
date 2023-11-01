@@ -50,7 +50,6 @@ export default function page() {
         unidad : unidad,
         persona: persona,
         estado: "Pendiente"
-
       }
       agregarReclamo(reclamo);
       console.log(reclamo)
