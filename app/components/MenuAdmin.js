@@ -22,9 +22,6 @@ export default function Menu() {
   return (
     <div className='flex flex-row gap-4'>
       <div className="flex flex-col gap-2">
-        <Link href={"/admin_reclamos"}>
-          <button className='font-bold px-[70px] py-5 bg-[#126bf1] text-[#ffff] rounded-2xl'>Administrar Reclamos</button>
-        </Link>
         <Link href={"/admin_edificios"}>
           <button className='font-bold px-[70px] py-5 bg-[#126bf1] text-[#ffff] rounded-2xl'>Administrar Edificios</button>
         </Link>
