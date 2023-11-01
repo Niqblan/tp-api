@@ -48,6 +48,7 @@ export default function page() {
         piso: piso,
         imagenes: imageURLs,
         unidad : unidad,
+        persona: persona,
         estado: "Pendiente"
 
 
@@ -88,6 +89,13 @@ export default function page() {
     setUnidad(e.target.value)
   }
 
+  const [persona, setPersona] = useState('');
+  const handlePersona = (e) => {
+    setPersona(e.target.value)
+  }
+
+
+
 
 
   return (
@@ -112,19 +120,26 @@ export default function page() {
         
         <h1 className='text-white'>Piso:</h1>
           <select className='bg-[#fff] w-[50px] h-7' onChange={(e) => handlePiso(e)}>
+            <option>-</option>
             <option>1</option>
             <option>2</option>
             <option>3</option>
             <option>4</option>
           </select>
           </div>
-        <div>
+        <div className='flex gap-7'>
           <h1 className='text-white'>Seleccionar unidad</h1>
           <select className='bg-[#fff]' onChange={(e) => handleUnidad(e)}>
+            <option>-</option>
             <option> 1</option>
             <option> 2</option>
             <option> 3</option>
             <option> 4</option>
+          </select>
+          <select className='bg-[#fff]' onChange={(e) => handlePersona(e)}>
+            <option>Seleccionar</option>
+            <option> Propietario</option>
+            <option> Inquilino</option>
           </select>
         </div>
         <div>

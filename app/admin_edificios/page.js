@@ -68,10 +68,10 @@ export default function AdminEdificios() {
                 <td className="py-4 px-4 text-center">{edificio.nombre}</td>
                 <td className="py-4 px-4 text-center">{edificio.direccion}</td>
                 <td className="py-4 px-4 text-center">
-                  <button
+                  <Link href={`/admin_edificios/${edificio.id}`}
                     className="bg-[#126bf1] text-white p-2 rounded-2xl">
                     Editar
-                  </button>
+                  </Link>
                 </td>
               </tr>
             ))}
