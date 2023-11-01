@@ -111,8 +111,15 @@ export const AuthProvider = ({ children }) => {
     setReclamos([...reclamos, reclamo]);
   };
 
+  
+  const modificarReclamo = (reclamoIndex, nuevoEstado) => {
+    const nuevosReclamos = [...reclamos];
+    nuevosReclamos[reclamoIndex].estado = nuevoEstado;
+    setReclamos(nuevosReclamos);
+  };
+
   return (
-    <AuthContext.Provider value={{ user, loggedIn, login, logout, reclamos, agregarReclamo }}>
+    <AuthContext.Provider value={{ user, loggedIn, login, logout, reclamos, agregarReclamo, modificarReclamo }}>
       {children}
     </AuthContext.Provider>
   );

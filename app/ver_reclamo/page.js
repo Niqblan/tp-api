@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation';
 
 export default function page() {
 
-  const { loggedIn, reclamos } = useContext(AuthContext);
+  const { loggedIn, reclamos, modificarReclamo } = useContext(AuthContext);
   const router = useRouter();
 
   useEffect(() => {
@@ -17,6 +17,12 @@ export default function page() {
       router.push('../signIn'); 
     }
   }, [loggedIn, router]);
+
+  const handleEstadoChange = (reclamoIndex, nuevoEstado) => {
+    modificarReclamo(reclamoIndex, nuevoEstado);
+  };
+
+
 
 
   return (
@@ -46,7 +52,19 @@ export default function page() {
                 <td className="py-4 px-4 text-center">{reclamo.unidad}</td>
                 <td className="py-4 px-4 text-center">{reclamo.edificio}</td>
                 <td className="py-4 px-4 text-center">{reclamo.piso}</td>
-                <td className="py-4 px-4 text-center">{reclamo.estado}</td>
+                <td className="py-4 px-4 text-center">
+                  <select
+                    value={reclamo.estado}
+                    onChange={(e) => handleEstadoChange(index, e.target.value)}
+                    className="border border-gray-300 rounded px-2 py-1">
+                    <option value="nuevo">Nuevo</option>
+                    <option value="abierto">Abierto</option>
+                    <option value="en proceso">En Proceso</option>
+                    <option value="pendiente">Pendiente</option>
+                    <option value="desestimado">Desestimado</option>
+                    <option value="terminado">Terminado</option>
+                  </select>
+                </td>
               </tr>
             ))}
           </tbody>
