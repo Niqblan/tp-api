@@ -53,5 +53,6 @@ export default function page() {
         </table>
       </div>
     </div>
+    
   );
 }
