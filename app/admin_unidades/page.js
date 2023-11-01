@@ -79,10 +79,10 @@ export default function AdminUnidades() {
                 <td className="py-4 px-4 text-center">{unidad.numero}</td>
                 <td className="py-4 px-4 text-center">{unidad.codigoEdificio}</td>
                 <td className="py-4 px-4 text-center">
-                  <button
+                <Link href={`/admin_unidades/${unidad.id}`}
                     className="bg-[#126bf1] text-white p-2 rounded-2xl">
                     Editar
-                  </button>
+                </Link>
                 </td>
               </tr>
             ))}
