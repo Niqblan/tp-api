@@ -51,7 +51,6 @@ export default function page() {
         persona: persona,
         estado: "Pendiente"
 
-
       }
       agregarReclamo(reclamo);
       console.log(reclamo)
