@@ -45,6 +45,7 @@ export default function page() {
         edificio: edificio,
         piso: piso,
         imagenes: imageURLs,
+        persona: persona,
         unidad : unidad,
         estado: "Pendiente"
 
@@ -53,7 +54,7 @@ export default function page() {
       agregarReclamo(reclamo);
       console.log(reclamo)
 
-      router.push('/');
+      router.push('/admin');
     } catch (error) {
       console.error("Error:", error);
     }
@@ -86,6 +87,11 @@ export default function page() {
     setUnidad(e.target.value)
   }
 
+  const [persona, setPersona] = useState('');
+  const handlePersona = (e) => {
+    setPersona(e.target.value)
+  }
+
   return (
     <div className='flex flex-col gap-3 items-center bg-[#8ec7ec] h-[100vh] w-[100%] py-12'>
       <h1 className='titulo'>Hacer un reclamo</h1>
@@ -108,19 +114,26 @@ export default function page() {
         
         <h1 className='text-white'>Piso:</h1>
           <select className='bg-[#fff] w-[50px] h-7' onChange={(e) => handlePiso(e)}>
+          <option> -</option>
             <option>1</option>
             <option>2</option>
             <option>3</option>
             <option>4</option>
           </select>
           </div>
-        <div>
+        <div className='flex gap-7'> 
           <h1 className='text-white'>Seleccionar unidad</h1>
           <select className='bg-[#fff]' onChange={(e) => handleUnidad(e)}>
+            <option> -</option>
             <option> 1</option>
             <option> 2</option>
             <option> 3</option>
             <option> 4</option>
+          </select>
+          <select className='bg-[#fff]' onChange={(e) => handlePersona(e)}>
+          <option>Seleccionar</option>
+            <option> Propietario</option>
+            <option> Inquilino</option>
           </select>
         </div>
       
@@ -130,7 +143,7 @@ export default function page() {
         </div>
 
          <div className='flex gap-2'>
-          <button className='bg-[#126bf1] text-[#fff] rounded-2xl w-[200px] p-4'>Confirmar reclamo</button>
+          <button  onClick={handleUpload} className='bg-[#126bf1] text-[#fff] rounded-2xl w-[200px] p-4'>Confirmar reclamo</button>
           <Link href={"/admin"} >
             <button className='bg-[#eb4343] text-[#ffffff] rounded-2xl w-[200px] p-4 top-2'>Cancelar</button>
           </Link>

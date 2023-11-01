@@ -20,53 +20,38 @@ export default function page() {
 
 
   return (
-    <div className='flex flex-col items-center bg-[#8ec7ec] h-[100vh] w-[100%] '>
-      <h1 className='titulo py-11'>Mis reclamos</h1>
-      <Link href={"/admin"} >
-            <button className='bg-[#126bf1] text-[#fff] rounded-2xl w-[150px] p-4 absolute top-5 left-5'>Volver</button>
+    <div className="flex flex-col items-center bg-[#8ec7ec] h-[100vh] w-[100%]">
+      <h1 className="titulo py-11">Mis reclamos</h1>
+      <Link href="/admin">
+        <button className="bg-[#126bf1] text-[#fff] rounded-2xl w-[200px] p-4 absolute top-5 left-5">Volver</button>
       </Link>
 
-      {/* Mostrar los reclamos */}
-      <div className="h-[10vh] w-[100vw] flex flex-col gap-[1px] justify-center items-center px-[10%] ">
-      <div className="flex w-full bg-[#126bf1] text-white font-bold p-3">
-        <div className="w-[40%] pl-10 ">
-          <h1>Titulo</h1>
-        </div>
-        <div className="w-[15%] pl-10 text-center">
-          <h1>Unidad</h1>
-        </div>
-        <div className="w-[15%] pl-10 text-center">
-          <h1>Edificio</h1>
-        </div>
-        <div className="w-[15%] pl-10 text-center">
-          <h1>Piso</h1>
-        </div>
-        <div className="w-[30%] pl-10 text-center">
-          <h1>Estado</h1>
-        </div>
+      <div className="w-[90%] mt-4">
+        <table className="min-w-full rounded-lg shadow-lg">
+          <thead>
+            <tr className="bg-[#126bf1] text-white">
+              <th className="py-4 px-4 text-center">Título</th>
+              <th className="py-4 px-4 text-center">Tipo</th>
+              <th className="py-4 px-4 text-center">Unidad</th>
+              <th className="py-4 px-4 text-center">Edificio</th>
+              <th className="py-4 px-4 text-center">Piso</th>
+              <th className="py-4 px-4 text-center">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            {reclamos.map((reclamo, index) => (
+              <tr key={index} className={index % 2 === 0 ? 'bg-[#e0ecfb]' : 'bg-[#d9e6fa]'}>
+                <td className="py-4 px-4 text-center">{reclamo.titulo}</td>
+                <td className="py-4 px-4 text-center">{reclamo.persona}</td>
+                <td className="py-4 px-4 text-center">{reclamo.unidad}</td>
+                <td className="py-4 px-4 text-center">{reclamo.edificio}</td>
+                <td className="py-4 px-4 text-center">{reclamo.piso}</td>
+                <td className="py-4 px-4 text-center">{reclamo.estado}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
-      {reclamos.map((reclamo, index) => {
-        return (
-          <div className="flex w-full bg-[#d9e6fa] p-2"key={index}>
-            <div className="w-[40%] pl-10 ">
-              <h1>{reclamo.titulo}</h1>
-            </div>
-            <div className="w-[15%] pl-10 text-center">
-              <h1>{reclamo.unidad}</h1>
-            </div>
-            <div className="w-[15%] pl-10 text-center">
-              <h1>{reclamo.edificio}</h1>
-            </div>
-            <div className="w-[15%] pl-10 text-center">
-              <h1>{reclamo.piso}</h1>
-            </div>
-            <div className="w-[30%] pl-10 text-center">
-              <h1>{reclamo.estado}</h1>
-            </div>
-          </div>
-        );
-      })}
     </div>
-    </div>
-    )
- }
+  );
+}
