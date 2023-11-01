@@ -7,9 +7,8 @@ import { AuthContext } from '../context/Context';
 import { useRouter } from 'next/navigation';
 
 export default function page() {
-  const [file, setFile] = useState(null);
 
-  const { loggedIn } = useContext(AuthContext);
+  const { loggedIn, agregarReclamo } = useContext(AuthContext);
   const router = useRouter();
 
   useEffect(() => {
@@ -17,6 +16,75 @@ export default function page() {
       router.push('../signIn'); 
     }
   }, [loggedIn, router]);
+   const [files, setFiles] = useState([]);
+  const [imageURLs, setImageURLs] = useState([]);
+
+
+  const handleFileChange = (e) => {
+    setFiles(Array.from(e.target.files));
+  };
+
+  const handleUpload = async () => {
+    const formData = new FormData();
+
+    files.forEach((file, index) => {
+      formData.append(`image${index + 1}`, file);
+    });
+
+    try {
+      const response = await fetch("/api/upload", { method: "POST", body: formData });
+      const data = await response.json();
+
+      setImageURLs(data.urls);
+      console.log("URLs:", data.urls);
+
+      // Agregar el reclamo al contexto
+      const reclamo = {
+        titulo: /* Obtén el título del reclamo */ document.querySelector('input[type="text"]').value,
+        descripcion: /* Obtén la descripción del reclamo */ description,
+        edificio: edificio,
+        piso: piso,
+        imagenes: imageURLs,
+        unidad : unidad,
+        estado: "Pendiente"
+
+
+      }
+      agregarReclamo(reclamo);
+      console.log(reclamo)
+
+      router.push('/');
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  //contador de palabras en descripcion
+  const [description, setDescription] = useState('');
+  const maxLength = 1000; 
+
+  const handleDescriptionChange = (e) => {
+    const text = e.target.value;
+    
+    if (text.length <= maxLength) {
+      setDescription(text);
+    }
+  };
+
+  const [edificio, setEdificio] = useState('');
+  const handleEdificio = (e) => {
+    setEdificio(e.target.value)
+  }
+  
+  const [piso, setPiso] = useState('');
+  const handlePiso = (e) => {
+    setPiso(e.target.value)
+  }
+
+  const [unidad, setUnidad] = useState('');
+  const handleUnidad = (e) => {
+    setUnidad(e.target.value)
+  }
 
   return (
     <div className='flex flex-col gap-3 items-center bg-[#8ec7ec] h-[100vh] w-[100%] py-12'>
@@ -24,46 +92,40 @@ export default function page() {
       <Link href={"/admin"} >
             <button className='bg-[#126bf1] text-[#fff] rounded-2xl w-[150px] p-4 absolute top-5 left-5'>Volver</button>
       </Link>
-      <form onSubmit={async(e) => {
-        e.preventDefault()  
-
-        const formData = new FormData();
-        formData.append("image",file);
-
-        const response = await fetch ("/api/upload", { method: "POST", body:formData});
-        
-        const data = await response.json();
-        console.log(data);
-      
-
-        }} className= "flex flex-col gap-6 font-semibold pb-10 py-5" >
+      <form className= "flex flex-col gap-6 font-semibold pb-10 py-5" onSubmit={(e) => {e.preventDefault(); }}>
         <div>
           <h1 className='text-white'>Título del reclamo</h1>
           <input className="bg-[#fff] px-2 py-1 w-[500px] rounded-md" type="text" />
         </div>
         <div>
           <h1 className='text-white'>Descripción del reclamo</h1>
-          <textarea className="bg-[#fff] px-2 w-[500px] h-[200px] py-1 rounded-md" type="text" />
+          <textarea className="bg-[#fff] px-2 w-[500px] h-[200px] py-1 rounded-md" value={description} onChange={(e) => handleDescriptionChange(e)}/>
+          <p className='text-white ml-[410px]'>{description.length} / {maxLength} </p>
         </div>
-        <div>
-          <h1 className='text-white'>Ubicación</h1>
-          <input className='bg-[#fff] px-2 py-1 w-[500px] rounded-md' type="text" />
-        </div>
+        <div className="flex space-x-4 mt-4">
+          <label className="block text-white">Edificio:</label>
+          <input className="bg-[#fff] px-2 py-1 w-full rounded-md" type="texto" onChange={(e) => handleEdificio(e)} />
+        
+        <h1 className='text-white'>Piso:</h1>
+          <select className='bg-[#fff] w-[50px] h-7' onChange={(e) => handlePiso(e)}>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+          </select>
+          </div>
         <div>
           <h1 className='text-white'>Seleccionar unidad</h1>
-          <select className='bg-[#fff]'>
-            <option>Unidad 1</option>
-            <option>Unidad 2</option>
-            <option>Unidad 3</option>
-            <option>Unidad 4</option>
+          <select className='bg-[#fff]' onChange={(e) => handleUnidad(e)}>
+            <option> 1</option>
+            <option> 2</option>
+            <option> 3</option>
+            <option> 4</option>
           </select>
         </div>
         <div>
           <h1 className='text-white '>Subir</h1>
-          <input className='text-white' type="file" multiple onChange={(e) => {
-            setFile(e.target.files[0]);
-          }}/>
-          <button className='bg-[#126bf1] text-[#fff] w-[70px] rounded-2xl'> Subir</button>
+          <input className='text-white' type="file" multiple onChange={handleFileChange}/>
         </div>
 
          <div className='flex gap-2'>

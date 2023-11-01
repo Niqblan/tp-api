@@ -13,9 +13,9 @@ export default function page() {
   const router = useRouter();
 
   useEffect(() => {
-    //if (!loggedIn) {
-      //router.push('../signIn'); 
-    //}
+    if (!loggedIn) {
+      router.push('../signIn'); 
+    }
   }, [loggedIn, router]);
 
   const [files, setFiles] = useState([]);
