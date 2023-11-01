@@ -57,7 +57,6 @@ export const AuthProvider = ({ children }) => {
     },
   ])
 
-  
 
   // Función para buscar un edificio por su ID
   const buscarEdificioPorId = (edificioId) => {

@@ -147,11 +147,8 @@ export default function page() {
           <Link href={"/admin"} >
             <button className='bg-[#eb4343] text-[#ffffff] rounded-2xl w-[200px] p-4 top-2'>Cancelar</button>
           </Link>
-         
          </div>
-        
       </form>
-
     </div>
   )
 }

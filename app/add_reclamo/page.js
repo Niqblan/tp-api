@@ -50,8 +50,6 @@ export default function page() {
         unidad : unidad,
         persona: persona,
         estado: "Pendiente"
-
-
       }
       agregarReclamo(reclamo);
       console.log(reclamo)
@@ -154,9 +152,7 @@ export default function page() {
           </Link>
          
          </div>
-        
       </form>
-
     </div>
   )
 }
