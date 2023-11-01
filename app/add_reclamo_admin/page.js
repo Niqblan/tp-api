@@ -47,7 +47,7 @@ export default function page() {
         imagenes: imageURLs,
         persona: persona,
         unidad : unidad,
-        estado: "Pendiente"
+        estado: "Nuevo"
 
 
       }
